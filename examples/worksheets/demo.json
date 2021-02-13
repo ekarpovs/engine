@@ -1,0 +1,5 @@
+{
+  "steps":[ 
+    {"exec": "geom.rotate", "angle": -30, "show": 1}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "modules": "../../modules",
+  "worksheets": "../../worksheets",
+  "images": "../../data/input",
+  "results": "../../data/output"
+}
