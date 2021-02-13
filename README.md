@@ -1,6 +1,6 @@
 # Image Processing Workshop Engine
 
-## It is the central part of the Image Processing Workshop project. The engine runs flows (worksheets) that implement different image-processing techniques
+## It is the central part of the [Image Processing Workshop](https://github.com/ekarpovs/image-processing-workshop) project. The engine runs flows (worksheets) that implement different image-processing techniques
 
 ### File system structure
 
