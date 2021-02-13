@@ -31,7 +31,7 @@ pip install opencv-python
 
 ```bash
 cd project
-python driver.py -f <worksheet file name> -i <input file name>
+python driver.py -f <worksheet name> -i <input file name>
 ```
 
 ## For more detailed description look at the ['doc'](./doc/README.md) folder
