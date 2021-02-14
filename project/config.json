@@ -1,6 +1,6 @@
 {
-  "modules": "../../modules",
-  "worksheets": "../../worksheets",
+  "modules": "../../modules-and-worksheets/modules",
+  "worksheets": "../../modules-and-worksheets/worksheets",
   "images": "../../data/input",
   "results": "../../data/output"
 }
