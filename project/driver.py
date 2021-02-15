@@ -87,8 +87,8 @@ def brkDecorator(executor):
 # Flow runner with steps input/output pipe
 def runFlow(input_, flow):  
   # init first step's arguments 
-  kwargs = flow[0]
-  kwargs['image'] = input_
+  kwargs = {}
+  flow[0]['image'] = input_
   for step in flow:
     # run the current step and pass the output to the input for the next one (pipe it)
     brk = step.get('brk', None)
