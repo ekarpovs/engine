@@ -1,10 +1,14 @@
 import cv2
 
-def empty(input_, **kwargs):
-  return input_
+def empty(**kwargs):
+  return kwargs
 
-def store(input_, **kwargs):
+def store(**kwargs):
+
+  image = kwargs.get('image', None)
   ffn = kwargs.get('ffn', '')
-  cv2.imwrite(ffn, input_)
 
-  return input_
+  if image is not None:
+    cv2.imwrite(ffn, image)
+
+  return kwargs

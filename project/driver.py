@@ -46,30 +46,30 @@ def setModulesPath(mpath):
 
 
 def showDecorator(executor):
-  def executorWrapper(input_, **kwargs):
-    cv2.imshow("before", input_)
+  def executorWrapper(**kwargs):
+    cv2.imshow("before", kwargs['image'])
     cv2.waitKey(0)
 
-    output_ = executor(input_, **kwargs)
+    kwargs = executor(**kwargs)
     
-    cv2.imshow("after", output_)
-    cv2.waitKey(0)
-        
-    return output_
+    cv2.imshow("after", kwargs['image'])
+    cv2.waitKey(0)       
+
+    return kwargs
 
   return executorWrapper
 
 
 # A break point decorator
 def brkDecorator(executor):
-  def executorWrapper(input_, **kwargs):
+  def executorWrapper(**kwargs):
     prompt = "parameter {}: "
-    cv2.imshow("before", input_)
+    cv2.imshow("before", kwargs['image'])
     cv2.waitKey(0)
     while True:
       print("breakpoint")
-      output_ = executor(input_, **kwargs)
-      cv2.imshow("after", output_)
+      kwargs = executor(**kwargs)
+      cv2.imshow("after", kwargs['image'])
       key = cv2.waitKey(0) & 0xFF    
       if key == ord("q"):
         print("break point - quit")
@@ -79,13 +79,16 @@ def brkDecorator(executor):
         if key != 'exec' and key != 'brk':
           print(key, value)
           # TODO: implement input of new values for parameters
-        
-    return output_
+   
+    return kwargs
 
   return executorWrapper
 
 # Flow runner with steps input/output pipe
 def runFlow(input_, flow):  
+  # init first step's arguments 
+  kwargs = flow[0]
+  kwargs['image'] = input_
   for step in flow:
     # run the current step and pass the output to the input for the next one (pipe it)
     brk = step.get('brk', None)
@@ -93,15 +96,15 @@ def runFlow(input_, flow):
     if brk is not None:
       print("tuning break point is defined", step['exec'])
       # before running, wrapp the step executor
-      input_ = brkDecorator(step['exec'])(input_, **step)
+      kwargs = brkDecorator(step['exec'])(**{**kwargs, **step})
     elif show is not None:
       print("show break point is defined", step['exec'])
       # before running, wrapp the step executor
-      input_ = showDecorator(step['exec'])(input_, **step)   
+      kwargs = showDecorator(step['exec'])(**{**kwargs, **step})
     else:
-      input_ = step['exec'](input_, **step)
+      kwargs = step['exec'](**{**kwargs, **step})
 
-  return input_
+  return kwargs['image']
 
 
 # Flow builder
