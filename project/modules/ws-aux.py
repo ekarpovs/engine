@@ -17,5 +17,4 @@ def clean(**kwargs):
   const_keys = ['exec', 'image', 'brk', 'show']
   for key in [k for k in kwargs if k not in const_keys]: kwargs.pop(key, None)
 
-  print(kwargs.keys())
   return kwargs

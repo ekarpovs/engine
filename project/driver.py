@@ -94,11 +94,11 @@ def runFlow(input_, flow):
     brk = step.get('brk', None)
     show = step.get('show', None)
     if brk is not None:
-      print("tuning break point is defined", step['exec'])
+      # print("tuning break point is defined", step['exec'])
       # before running, wrapp the step executor
       kwargs = brkDecorator(step['exec'])(**{**kwargs, **step})
     elif show is not None:
-      print("show break point is defined", step['exec'])
+      # print("show break point is defined", step['exec'])
       # before running, wrapp the step executor
       kwargs = showDecorator(step['exec'])(**{**kwargs, **step})
     else:
