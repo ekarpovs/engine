@@ -104,8 +104,6 @@ def runFlow(input_, flow):
     else:
       kwargs = step['exec'](**{**kwargs, **step})
 
-  print("kwargs", kwargs.keys())
-
   return kwargs['image']
 
 
