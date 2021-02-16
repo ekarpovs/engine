@@ -104,18 +104,27 @@ def runFlow(input_, flow):
     else:
       kwargs = step['exec'](**{**kwargs, **step})
 
+  print("kwargs", kwargs.keys())
+
   return kwargs['image']
 
 
 # Flow builder
 def buildFlow(worksheet_file_name):
+  # get clean operation from aux module
+  # delete parameters from the kwargs, because it will be merged with 
+  # parameters dictionary for the next step
+  clean = {}
+  clean['exec'] = modules.get("ws-aux.clean")
   # get the flow worksheet
   steps = readJson(worksheet_file_name)["steps"]
 
   flow = []
   for step in steps:  
     step['exec'] = modules.get(step['exec'])
-    flow.append(step)  
+    flow.append(step)
+    # clean kwargs after an each step
+    flow.append(clean) 
 
   return flow
 
@@ -143,7 +152,6 @@ def main(**kwargs):
   cv2.imwrite(result_file, result)
 
   cv2.destroyAllWindows()
-
 
 # Entry point
 if __name__ == "__main__":
