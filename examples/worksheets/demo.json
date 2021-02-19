@@ -1,5 +1,17 @@
 {
-  "steps":[ 
-    {"exec": "geom.rotate", "angle": -30, "show": 1}
+  "steps":[
+    {"exec": "bsc.translate", "show": 1},
+    {"exec": "bsc.translate", "show": 1, "x": 50, "y": -40},
+    {"exec": "bsc.translate", "show": 1, "x": -50, "y": 40},
+    {"exec": "bsc.resize", "show": 1, "unit": 1, "size": 50},
+    {"exec": "bsc.crop", "show": 1, "y0": 100, "x0": 150},
+    {"exec": "bsc.flip", "drct": -1, "show": 1},
+    {"exec": "bsc.rotate", "angle": -30, "show": 1},
+    {"exec": "bsc.rotate", "angle": 30, "show": 1},
+    {"exec": "smth.bilateral", "show": 1},
+    {"exec": "clrs.bgrto", "show": 1},
+    {"exec": "cntrs.find", "show": 1},
+    {"exec": "mrph.mex", "show": 1},
+    {"exec": "thrsh.simple", "show": 1, "type": 1}
   ]
 }
