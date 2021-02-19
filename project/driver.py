@@ -122,7 +122,7 @@ def buildFlow(worksheet_file_name):
     step['exec'] = modules.get(step['exec'])
     flow.append(step)
     # clean kwargs after an each step
-    flow.append(clean) 
+    # flow.append(clean) 
 
   return flow
 
