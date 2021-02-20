@@ -18,3 +18,9 @@ def clean(**kwargs):
   for key in [k for k in kwargs if k not in const_keys]: kwargs.pop(key, None)
 
   return kwargs
+
+def printkwargs(**kwargs):
+  [print(k, v) for k, v in kwargs.items() if k != "image"]
+  
+  return kwargs
+
