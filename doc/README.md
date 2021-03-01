@@ -26,9 +26,9 @@ _____
                 |    |
                 |    |__ fsut.py - file system operations 
                 |    
-                |__ /modules/ __ modules and executors loader, varios common operations for usage in a flow
+                |__ /modules/ __ modules and operations loader, varios common operations for usage in a flow
                 |    |
-                |    |__ __init__.py - the 'modules' package declaration, modules and executors loader
+                |    |__ __init__.py - the 'modules' package declaration, and operations loader
                 |    |
                 |    |__ ws-aux.py - module provides common operations
                 |
@@ -63,14 +63,14 @@ Implement a new python script inside an external 'module' folder, with at least 
 ```yaml
 import cv2
 
-def <function_name>(input_, **kwargs):  
-  # parse kwards
+def <function_name>(**kwargs):  
+  # 1. parse kwards
 
-  # do something with the input image
+  # 2. do something with the input image
 
-  # assign the result to output_ and
+  # 3. assign the result to kwargs['xxx'] and
 
-  return output_
+  return kwargs
 ```
 
 ### Add a new operation
