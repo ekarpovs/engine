@@ -1,4 +1,5 @@
 {
+  "local": "./modules",
   "modules": "../../modules-and-worksheets/modules",
   "worksheets": "../../modules-and-worksheets/worksheets",
   "images": "../../data/input",

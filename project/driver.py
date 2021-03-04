@@ -27,22 +27,17 @@ def parseArgs():
 
 # Read configuration file
 def readConfig():
-  paths = readJson('./config.json')
+  config = readJson('./config.json')
 
-  images_path = paths['images']
-  worksheets_path = paths['worksheets']
-  modules_path = paths['modules']
-  results_path = paths['results']
-
-  return images_path, worksheets_path, modules_path, results_path
+  return config
 
 
 # Set paths for the module loader
-def setModulesPath(mpath):
+def setModulesPath(config):
   # the engine's local collection
-  sys.path.append('./modules')
+  sys.path.append(config['local'])
   # external collection
-  sys.path.append(mpath)
+  sys.path.append(config['modules'])
 
 
 def showDecorator(executor):
@@ -127,25 +122,24 @@ def buildFlow(worksheet_file_name):
   return flow
 
 
-
 # Main function
 def main(**kwargs): 
 
-  images_path, worksheets_path, modules_path, results_path = readConfig()
+  config = readConfig()
 
-  setModulesPath(modules_path)
+  setModulesPath(config)
 
-  worksheet_file_name = "{}/{}.json".format(worksheets_path, kwargs['flow'])
+  worksheet_file_name = "{}/{}.json".format(config['worksheets'], kwargs['flow'])
   flow = buildFlow(worksheet_file_name)
 
   # get input and run the flow 
-  image_file_name = "{}/{}".format(images_path, kwargs["input"])
+  image_file_name = "{}/{}".format(config['images'], kwargs["input"])
   image = cv2.imread(image_file_name)
   print("The image will be processed", image_file_name)
 
   result = runFlow(image, flow)
 
-  result_file = "{}/result-{}".format(results_path, kwargs["input"])
+  result_file = "{}/result-{}".format(config['results'], kwargs["input"])
   print("Result saved to", result_file)
   cv2.imwrite(result_file, result)
 
