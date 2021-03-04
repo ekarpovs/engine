@@ -36,16 +36,18 @@ def store_doc(doc):
 # Main function
 def main(**kwargs): 
   paths = readJson('./config.json')
-  # the engine's local collection
+
+  # local collection
   lpath = paths['local']
   sys.path.append(lpath)
 
-  mpath = paths['modules']
   # external collection
+  mpath = paths['modules']
   sys.path.append(mpath)
  
   doc = make_doc(lpath)
-  # doc = make_doc(mpath)
+  doc += make_doc(mpath)
+
   store_doc(doc)
 
   # htmlmarkdown = make_md(doc)
