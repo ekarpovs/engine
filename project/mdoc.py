@@ -21,15 +21,16 @@ def parseArgs():
 
 def make_doc(path):
   doc = []
+  doc.append("# WorkSheet: {}\n".format(path))
   mods = modules.list(path)
   for mod, funcs in mods.items():
     # print("Module:", mod.__name__, mod.__doc__)
-    doc.append("Module: {}".format(mod.__name__))
-    doc.append("{}{}".format(mod.__doc__, '\n'))
+    doc.append("## Module: {}".format(mod.__name__))
+    doc.append("{}\n".format(mod.__doc__))
     for func in funcs:
       # print("Function:", func.__name__, func.__doc__) 
-      doc.append("Function: {}".format(func.__name__))
-      doc.append("{}{}".format(func.__doc__, '\n'))
+      doc.append("### Function: {}".format(func.__name__))
+      doc.append("{}\n".format(func.__doc__))
 
   return doc
 
