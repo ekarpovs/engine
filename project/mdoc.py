@@ -1,9 +1,22 @@
 import sys, os
-import markdown
-
+import argparse
+# import markdown
 
 from lib import readJson
 import modules
+
+
+# Construct the argument parser and parse the arguments
+def parseArgs():
+  ap = argparse.ArgumentParser(description="WorkShop")
+  ap.add_argument("-o", "--output", required = False,
+  default='../../data/tmp/1.md',
+	help = "path to the output file(s)")
+  
+  args = ap.parse_args()   
+  kwargs = dict((k,v) for k,v in vars(args).items() if k!="message_type")
+  
+  return kwargs
 
 
 def make_doc(path):
@@ -26,8 +39,8 @@ def make_md(doc):
   return 
 
 
-def store_doc(doc):
-  with open('../../data/tmp/1.md', "w") as outfile: 
+def store_doc(ffn, doc):
+  with open(ffn, "w") as outfile: 
     for line in doc:
       outfile.write(line)
 
@@ -48,7 +61,7 @@ def main(**kwargs):
   doc = make_doc(lpath)
   doc += make_doc(mpath)
 
-  store_doc(doc)
+  store_doc(kwargs['output'], doc)
 
   # htmlmarkdown = make_md(doc)
  
@@ -57,5 +70,5 @@ def main(**kwargs):
 # Entry point
 if __name__ == "__main__":
   # kwargs = parseArgs()
-  kwargs = {}
+  kwargs = parseArgs()
   main(**kwargs) 
