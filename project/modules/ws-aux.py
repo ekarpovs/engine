@@ -39,6 +39,25 @@ def store(**kwargs):
 
   return kwargs
 
+
+def restore(**kwargs):
+  '''
+  Restores an image from a file.
+  
+  Keyword arguments:
+  - ffn: full file name, where from the image will be restored.
+  
+  Returns:
+  - the image.
+  '''  
+
+  ffn = kwargs.get('ffn', '')
+
+  kwargs['image'] = cv2.imread(ffn)
+
+  return kwargs
+
+
 def clean(**kwargs):
   '''
   Cleans kwargs dictionary from items.
