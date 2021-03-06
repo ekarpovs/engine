@@ -34,6 +34,8 @@ _____
                 |
                 |__ driver.py __ main script for run different flows (worksheets)
                 |
+                |__ mdoc.py __ documentation generator for modules
+                |
                 |__ config.json __ data for setup the engine working environment
                 |
                 |__ .gitignore __ Git ignore patterns
@@ -89,4 +91,10 @@ Create a new json file, inside an external 'worksheets' folder, regarding the pa
     {"exec": "<module name>.<operatoion name>"[, "parameter name": "parameter value", ...]},
   ]
 }
+```
+
+Generate modules documentation
+```bash
+cd project
+python mdoc.py -o <path to modules-and-worksheets>/doc/README_MODULES.md
 ```
