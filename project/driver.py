@@ -41,14 +41,23 @@ def setModulesPath(config):
 
 
 def showDecorator(executor):
+  '''
+    show:
+    0 - both;
+    1 - before;
+    2 - after.
+  '''
   def executorWrapper(**kwargs):
     name = executor.__name__
-    cv2.imshow("{} before".format(name), kwargs['image'])
-    cv2.waitKey(0)
+    if kwargs['show'] == 0 or kwargs['show'] == 1: 
+      cv2.imshow("{} before".format(name), kwargs['image'])
+      cv2.waitKey(0)
+    
     kwargs = executor(**kwargs)
     
-    cv2.imshow("{} after".format(name), kwargs['image'])
-    cv2.waitKey(0)       
+    if kwargs['show'] == 0 or kwargs['show'] == 2: 
+      cv2.imshow("{} after".format(name), kwargs['image'])
+      cv2.waitKey(0)       
 
     return kwargs
 
