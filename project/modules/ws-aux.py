@@ -52,8 +52,15 @@ def restore(**kwargs):
   '''  
 
   ffn = kwargs.get('ffn', '')
+  index = kwargs.get('index', '')
 
-  kwargs['image'] = cv2.imread(ffn)
+  key = 'image' + index 
+  print(key, ffn)
+
+  if ffn != '':
+    kwargs[key] = cv2.imread(ffn)
+  else:
+    kwargs[key] = kwargs['image']
 
   return kwargs
 
